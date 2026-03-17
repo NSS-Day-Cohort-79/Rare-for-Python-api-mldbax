@@ -35,3 +35,22 @@ def get_categories():
 
 def retrieve_category(pk):
     pass
+
+
+def create_category(category_data):
+    """Take in category data and run query to add new category to table"""
+
+    with sqlite3.connect("./db.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        # Write the SQL query to get the information you want
+        db_cursor.execute(
+            """
+            INSERT INTO Categories VALUES (null, ?)
+            """,
+            (category_data["label"],),
+        )
+
+        new_category_id = db_cursor.lastrowid
+
+    return new_category_id

@@ -5,7 +5,7 @@ from nss_handler import HandleRequests, status
 
 # Add your imports below this line
 from views import login_user, create_user
-from views import get_categories, retrieve_category
+from views import get_categories, retrieve_category, create_category
 
 # from views import
 
@@ -90,10 +90,13 @@ class JSONServer(HandleRequests):
         request_body = self.rfile.read(content_len)
         request_body = json.loads(request_body)
 
-        if url["requested_resource"] == "ships":
-            # successfully_updated = add_ship(request_body)
-            # if successfully_updated:
-            return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+        if url["requested_resource"] == "categories":
+            new_category_id = create_category(request_body)
+            if new_category_id:
+                return self.response(
+                    "",
+                    status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value,
+                )
         else:
             return self.response(
                 "oops", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA.value
