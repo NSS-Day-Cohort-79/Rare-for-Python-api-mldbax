@@ -34,7 +34,25 @@ def get_categories():
 
 
 def retrieve_category(pk):
-    pass
+    """Run query to get a single category and return serialized result"""
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(
+            """
+            SELECT
+                id,
+                label
+            FROM Categories
+            WHERE id = ?
+            """,
+            (pk,),
+        )
+        row = db_cursor.fetchone()
+        serialized_order = json.dumps(dict(row))
+
+    return serialized_order
 
 
 def create_category(category_data):

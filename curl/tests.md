@@ -2,7 +2,11 @@
 
 ### Get
 
+```bash
 curl 'http://localhost:8000/categories' | jq
+
+curl 'http://localhost:8000/categories/1' | jq
+```
 
 ### POST
 
