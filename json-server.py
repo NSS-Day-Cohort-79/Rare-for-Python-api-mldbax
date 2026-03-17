@@ -5,7 +5,13 @@ from nss_handler import HandleRequests, status
 
 # Add your imports below this line
 from views import login_user, create_user
-from views import get_categories, retrieve_category, create_category, update_category
+from views import (
+    get_categories,
+    retrieve_category,
+    create_category,
+    update_category,
+    delete_category,
+)
 
 # from views import
 
@@ -64,13 +70,13 @@ class JSONServer(HandleRequests):
         url = self.parse_url(self.path)
         pk = url["pk"]
 
-        if url["requested_resource"] == "ships":
+        if url["requested_resource"] == "categories":
             if pk != 0:
-                # successfully_deleted = delete_ship(pk)
-                # if successfully_deleted:
-                #    return self.response(
-                #        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
-                #    )
+                successfully_deleted = delete_category(pk)
+                if successfully_deleted:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
 
                 return self.response(
                     "Requested resource not found",

@@ -4,4 +4,5 @@ from .category import (
     retrieve_category,
     create_category,
     update_category,
+    delete_category,
 )
