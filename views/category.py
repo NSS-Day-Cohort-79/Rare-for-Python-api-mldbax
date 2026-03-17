@@ -54,3 +54,19 @@ def create_category(category_data):
         new_category_id = db_cursor.lastrowid
 
     return new_category_id
+
+
+def update_category(pk, category_data):
+    """Take primary key and updated category data, and run query to update entry in table"""
+    with sqlite3.connect("./db.sqlite3") as conn:
+        db_cursor = conn.cursor()
+        db_cursor.execute(
+            """
+            UPDATE Categories
+                SET
+                    label = ?
+            WHERE id = ?
+            """,
+            (category_data["label"], pk),
+        )
+    return True if db_cursor.rowcount > 0 else False
