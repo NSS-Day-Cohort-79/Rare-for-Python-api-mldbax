@@ -5,7 +5,13 @@ from nss_handler import HandleRequests, status
 
 # Add your imports below this line
 from views import login_user, create_user
-from views import get_categories, retrieve_category
+from views import (
+    get_categories,
+    retrieve_category,
+    create_category,
+    update_category,
+    delete_category,
+)
 
 # from views import
 
@@ -21,9 +27,9 @@ class JSONServer(HandleRequests):
 
         if url["requested_resource"] == "categories":
             if url["pk"] != 0:
-                # response_body = retrieve_category(url["pk"])
-                # return self.response(response_body, status.HTTP_200_SUCCESS.value)
-                pass
+                response_body = retrieve_category(url["pk"])
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
+
             else:
                 response_body = get_categories()
                 return self.response(response_body, status.HTTP_200_SUCCESS.value)
@@ -45,11 +51,13 @@ class JSONServer(HandleRequests):
         request_body = self.rfile.read(content_len)
         request_body = json.loads(request_body)
 
-        if url["requested_resource"] == "ships":
+        if url["requested_resource"] == "categories":
             if pk != 0:
-                # successfully_updated = update_ship(pk, request_body)
-                # if successfully_updated:
-                return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+                successfully_updated = update_category(pk, request_body)
+                if successfully_updated:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
 
         return self.response(
             "Requested resource not found",
@@ -62,13 +70,13 @@ class JSONServer(HandleRequests):
         url = self.parse_url(self.path)
         pk = url["pk"]
 
-        if url["requested_resource"] == "ships":
+        if url["requested_resource"] == "categories":
             if pk != 0:
-                # successfully_deleted = delete_ship(pk)
-                # if successfully_deleted:
-                #    return self.response(
-                #        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
-                #    )
+                successfully_deleted = delete_category(pk)
+                if successfully_deleted:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
 
                 return self.response(
                     "Requested resource not found",
@@ -90,10 +98,13 @@ class JSONServer(HandleRequests):
         request_body = self.rfile.read(content_len)
         request_body = json.loads(request_body)
 
-        if url["requested_resource"] == "ships":
-            # successfully_updated = add_ship(request_body)
-            # if successfully_updated:
-            return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+        if url["requested_resource"] == "categories":
+            new_category_id = create_category(request_body)
+            if new_category_id:
+                return self.response(
+                    "",
+                    status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value,
+                )
         else:
             return self.response(
                 "oops", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA.value
