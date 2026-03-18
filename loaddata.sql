@@ -94,5 +94,11 @@ INSERT INTO Categories ('label')
 VALUES ('Food');
 INSERT INTO Tags ('label')
 VALUES ('JavaScript');
+INSERT INTO Tags ('label')
+VALUES ('React');
+INSERT INTO Tags ('label')
+VALUES ('Python');
+INSERT INTO Tags ('label')
+VALUES ('Django');
 INSERT INTO Reactions ('label', 'image_url')
 VALUES ('happy', 'https://pngtree.com/so/happy');
