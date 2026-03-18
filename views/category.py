@@ -50,9 +50,9 @@ def retrieve_category(pk):
             (pk,),
         )
         row = db_cursor.fetchone()
-        serialized_order = json.dumps(dict(row))
+        serialized_category = json.dumps(dict(row))
 
-    return serialized_order
+    return serialized_category
 
 
 def create_category(category_data):
