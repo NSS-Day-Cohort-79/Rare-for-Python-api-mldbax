@@ -6,3 +6,7 @@ from .category import (
     update_category,
     delete_category,
 )
+from .posts import (
+  get_posts,
+  retrieve_post
+)
