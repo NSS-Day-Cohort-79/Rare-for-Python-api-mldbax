@@ -97,6 +97,29 @@ VALUES ('JavaScript');
 INSERT INTO Reactions ('label', 'image_url')
 VALUES ('happy', 'https://pngtree.com/so/happy');
 
+INSERT INTO Users (
+'first_name', 
+'last_name', 
+'email', 
+'bio', 
+'username',
+'password', 
+'profile_image_url', 
+'created_on', 
+'active'
+) 
+VALUES (
+'Spongebob',
+'Squarepants',
+'imready@thekrustykrab.oc',
+'I''m SpongeBob SquarePants! I''m a fry cook at the Krusty Krab, the best fry cook in Bikini Bottom — just ask my boss Mr. Krabs, or don''t, he''ll probably charge you for the answer!',
+'ready2fry',
+'krabbypatty1',
+'https://i.ebayimg.com/images/g/qc8AAOSw~Mdk8oWS/s-l1200.jpg',
+'2003-14-12',
+1
+);
+
 INSERT INTO Posts (
   'user_id', 
   'category_id', 
@@ -110,7 +133,7 @@ VALUES (
   1, 
   2, 
   'UK''s Cosiest Thatched Cottages', 
-  '2025-09-10', 
+  '2025-10-09', 
   'https://ichef.bbci.co.uk/images/ic/800xn/p0m7g4l8.jpg.webp', 
   'Thatched cottages trigger all sorts of signification, drawn from myth and literature," Matt Carey-Williams, founder of his eponymous London art gallery, who owns a thatched cottage in Wiltshire, tells the BBC. "They appear in Little Red Riding Hood and JRR Tolkien''s the Shire [in The Hobbit and The Lord of the Rings]." Also fitting this description is Anne Hathaway''s Cottage, a half-timbered building. Its construction began in 1463.', 
   1
@@ -125,10 +148,10 @@ INSERT INTO Posts (
   'approved'
 )
 VALUES (
-  2, 
+  1, 
   4, 
   'Does Eating Cheese Before Bed Cause Nightmares?', 
-  '2026-03-18', 
+  '2026-18-03', 
   'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/5/31/HE_cheese-board-Getty_4x3.jpg.rend.hgtvcom.616.462.85.suffix/1559329196445.webp',
   'We went right to the expert to determine the relationship between food and sleep. Karman Meyer RD, LDN, author of Eat To Sleep — What to Eat & When to Eat It for a Good Night''s Sleep isn''t sold on the link between cheese and nightmares. "There''s not any robust research that supports the claim that eating cheese before bed will cause nightmares,” says Meyer. “I''m a regular cheese-eater, at any time of day, and can''t recall the last time I awoke from sleep, stricken by fear from a nightmare. That''s anecdotal evidence, of course, but at least I know for me, there''s nothing to fear in eating cheese at night!” In fact, Karman includes cheese on the "Best Bedtime Snacks" list in her book.', 
   1
@@ -146,7 +169,7 @@ VALUES (
 1,
 3,
 'Is Our Team the Best?',
-'2026-03-17',
+'2026-17-03',
 'https://static.wikia.nocookie.net/spongebob/images/7/79/The_Secret_Box_171.png/revision/latest/scale-to-width-down/1424?cb=20250725165834',
 'Duh. Absolutely, no doubt. It''s not even a question',
 1
