@@ -18,6 +18,7 @@ def get_categories():
                 id,
                 label
             FROM Categories
+            ORDER BY label
             """
         )
         query_results = db_cursor.fetchall()
