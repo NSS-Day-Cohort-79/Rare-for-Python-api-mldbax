@@ -1,11 +1,11 @@
-"""view for holding category functions"""
+"""view for holding tag functions"""
 
 import sqlite3
 import json
 
 
-def get_categories():
-    """Run query to get all categories and return list of objects"""
+def get_tags():
+    """Run query to get all tags and return serialized list of objects"""
     # Open a connection to the database
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
@@ -17,25 +17,24 @@ def get_categories():
             SELECT
                 id,
                 label
-            FROM Categories
-            ORDER BY label
+            FROM Tags
             """
         )
         query_results = db_cursor.fetchall()
 
         # Initialize an empty list and then add each dictionary to it
-        categories = []
+        tags = []
         for row in query_results:
-            categories.append(dict(row))
+            tags.append(dict(row))
 
         # Serialize Python list to JSON encoded string
-        serialized_categories = json.dumps(categories)
+        serialized_tags = json.dumps(tags)
 
-    return serialized_categories
+    return serialized_tags
 
 
-def retrieve_category(pk):
-    """Run query to get a single category and return serialized result"""
+def retrieve_tag(pk):
+    """Run query to get a single tag and return serialized result"""
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -45,53 +44,53 @@ def retrieve_category(pk):
             SELECT
                 id,
                 label
-            FROM Categories
+            FROM Tags
             WHERE id = ?
             """,
             (pk,),
         )
         row = db_cursor.fetchone()
-        serialized_category = json.dumps(dict(row))
+        serialized_tag = json.dumps(dict(row))
 
-    return serialized_category
+    return serialized_tag
 
 
-def create_category(category_data):
-    """Take in category data and run query to add new category to table"""
-
+def create_tag(tag_data):
+    """Take in tag data and run query to add new tag to table"""
     with sqlite3.connect("./db.sqlite3") as conn:
         db_cursor = conn.cursor()
 
         # Write the SQL query to get the information you want
         db_cursor.execute(
             """
-            INSERT INTO Categories VALUES (null, ?)
+            INSERT INTO Tags VALUES (null, ?)
             """,
-            (category_data["label"],),
+            (tag_data["label"],),
         )
 
-        new_category_id = db_cursor.lastrowid
+        new_tag_id = db_cursor.lastrowid
 
-    return new_category_id
+    return new_tag_id
 
 
-def update_category(pk, category_data):
-    """Take primary key and updated category data, and run query to update entry in table"""
+def update_tag(pk, tag_data):
+    """Take primary key and updated tag data, and run query to update entry in table"""
     with sqlite3.connect("./db.sqlite3") as conn:
         db_cursor = conn.cursor()
         db_cursor.execute(
             """
-            UPDATE Categories
+            UPDATE Tags
                 SET
                     label = ?
             WHERE id = ?
             """,
-            (category_data["label"], pk),
+            (tag_data["label"], pk),
         )
     return True if db_cursor.rowcount > 0 else False
 
 
-def delete_category(pk):
+def delete_tag(pk):
+    """run query to delete the passed in tag id"""
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -99,7 +98,7 @@ def delete_category(pk):
         # Write the SQL query to get the information you want
         db_cursor.execute(
             """
-        DELETE FROM Categories WHERE id = ?
+        DELETE FROM Tags WHERE id = ?
         """,
             (pk,),
         )
