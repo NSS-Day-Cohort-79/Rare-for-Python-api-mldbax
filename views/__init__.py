@@ -6,4 +6,4 @@ from .category import (
     update_category,
     delete_category,
 )
-from .tag import get_tags
+from .tag import get_tags, retrieve_tag

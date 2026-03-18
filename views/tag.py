@@ -31,3 +31,25 @@ def get_tags():
         serialized_tags = json.dumps(tags)
 
     return serialized_tags
+
+
+def retrieve_tag(pk):
+    """Run query to get a single tag and return serialized result"""
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(
+            """
+            SELECT
+                id,
+                label
+            FROM Tags
+            WHERE id = ?
+            """,
+            (pk,),
+        )
+        row = db_cursor.fetchone()
+        serialized_tag = json.dumps(dict(row))
+
+    return serialized_tag

@@ -12,7 +12,7 @@ from views import (
     update_category,
     delete_category,
 )
-from views import get_tags
+from views import get_tags, retrieve_tag
 
 
 class JSONServer(HandleRequests):
@@ -34,13 +34,13 @@ class JSONServer(HandleRequests):
                 return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         elif url["requested_resource"] == "tags":
-            # if url["pk"] != 0:
-            # response_body = retrieve_tag(url["pk"])
-            # return self.response(response_body, status.HTTP_200_SUCCESS.value)
+            if url["pk"] != 0:
+                response_body = retrieve_tag(url["pk"])
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
-            # else:
-            response_body = get_tags()
-            return self.response(response_body, status.HTTP_200_SUCCESS.value)
+            else:
+                response_body = get_tags()
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         else:
             return self.response(
