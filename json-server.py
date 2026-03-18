@@ -12,7 +12,7 @@ from views import (
     update_category,
     delete_category,
 )
-from views import get_tags, retrieve_tag
+from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
 
 class JSONServer(HandleRequests):
@@ -66,6 +66,13 @@ class JSONServer(HandleRequests):
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
                     )
+        elif url["requested_resource"] == "tags":
+            if pk != 0:
+                successfully_updated = update_tag(pk, request_body)
+                if successfully_updated:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
 
         return self.response(
             "Requested resource not found",
@@ -85,12 +92,21 @@ class JSONServer(HandleRequests):
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
                     )
-
                 return self.response(
                     "Requested resource not found",
                     status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value,
                 )
-
+        elif url["requested_resource"] == "tags":
+            if pk != 0:
+                successfully_deleted = delete_tag(pk)
+                if successfully_deleted:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
+                return self.response(
+                    "Requested resource not found",
+                    status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value,
+                )
         else:
             return self.response(
                 "Not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value
@@ -109,6 +125,13 @@ class JSONServer(HandleRequests):
         if url["requested_resource"] == "categories":
             new_category_id = create_category(request_body)
             if new_category_id:
+                return self.response(
+                    "",
+                    status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value,
+                )
+        elif url["requested_resource"] == "tags":
+            new_tag_id = create_tag(request_body)
+            if new_tag_id:
                 return self.response(
                     "",
                     status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value,
