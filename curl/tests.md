@@ -69,3 +69,13 @@ curl -v --header "Content-Type: application/json" \
   --request DELETE \
   'http://localhost:8088/tags/5' | jq
 ```
+
+## Users test
+
+### Register
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"first_name":"Patrick", "last_name":"Starr", "username":"This_Is_Patrick1", "email":"NO!ThisIsPatrick*84@bikinibottom.oc", "password":"wombo", "bio":"WHO ARE YOU PEOPLE!"}' \
+  'http://localhost:8088/register'
+```

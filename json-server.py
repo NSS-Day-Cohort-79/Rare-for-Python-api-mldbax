@@ -150,13 +150,16 @@ class JSONServer(HandleRequests):
                     "",
                     status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value,
                 )
+        elif url["requested_resource"] == "register":
+            new_token = create_user(request_body)
+            if new_token:
+                return self.response(new_token, status.HTTP_201_SUCCESS_CREATED.value)
         else:
             return self.response(
                 "oops", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA.value
             )
 
 
-#
 # THE CODE BELOW THIS LINE IS NOT IMPORTANT FOR REACHING YOUR LEARNING OBJECTIVES
 #
 def main():
