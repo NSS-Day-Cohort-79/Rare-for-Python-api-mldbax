@@ -12,10 +12,7 @@ from views import (
     update_category,
     delete_category,
 )
-from views import (
-  get_posts, 
-  retrieve_post
-  )
+from views import get_posts, retrieve_post
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
@@ -58,8 +55,6 @@ class JSONServer(HandleRequests):
             return self.response(
                 "", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value
             )
-        
-        
 
     def do_PUT(self):
         """Handle PUT requests from a client"""
@@ -154,6 +149,11 @@ class JSONServer(HandleRequests):
             new_token = create_user(request_body)
             if new_token:
                 return self.response(new_token, status.HTTP_201_SUCCESS_CREATED.value)
+
+        elif url["requested_resource"] == "login":
+            set_token = login_user(request_body)
+            if set_token:
+                return self.response(set_token, status.HTTP_200_SUCCESS.value)
         else:
             return self.response(
                 "oops", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA.value

@@ -79,3 +79,11 @@ curl --header "Content-Type: application/json" \
   --data '{"first_name":"Patrick", "last_name":"Starr", "username":"This_Is_Patrick1", "email":"NO!ThisIsPatrick*84@bikinibottom.oc", "password":"wombo", "bio":"WHO ARE YOU PEOPLE!"}' \
   'http://localhost:8088/register'
 ```
+
+### Login
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username":"redy2fry", "password":"krabbypatty1"}' \
+  'http://localhost:8088/login'
+```
