@@ -87,3 +87,14 @@ curl --header "Content-Type: application/json" \
   --data '{"username":"redy2fry", "password":"krabbypatty1"}' \
   'http://localhost:8088/login'
 ```
+
+## Posts tests
+
+### Get
+
+```bash
+curl 'http://localhost:8088/posts' | jq
+
+curl 'http://localhost:8088/posts/1' | jq
+
+curl 'http://localhost:8088/approved-posts' | jq
