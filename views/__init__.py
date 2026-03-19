@@ -6,5 +6,5 @@ from .category import (
     update_category,
     delete_category,
 )
-from .posts import get_posts, retrieve_post
+from .posts import get_posts, retrieve_post, get_approved_posts
 from .tag import get_tags, retrieve_tag, create_tag, update_tag, delete_tag

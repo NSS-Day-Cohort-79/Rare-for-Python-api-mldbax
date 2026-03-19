@@ -79,3 +79,14 @@ curl --header "Content-Type: application/json" \
   --data '{"first_name":"Patrick", "last_name":"Starr", "username":"This_Is_Patrick1", "email":"NO!ThisIsPatrick*84@bikinibottom.oc", "password":"wombo", "bio":"WHO ARE YOU PEOPLE!"}' \
   'http://localhost:8088/register'
 ```
+
+## Posts tests
+
+### Get
+
+```bash
+curl 'http://localhost:8088/posts' | jq
+
+curl 'http://localhost:8088/posts/1' | jq
+
+curl 'http://localhost:8088/approved-posts' | jq

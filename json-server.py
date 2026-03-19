@@ -14,7 +14,8 @@ from views import (
 )
 from views import (
   get_posts, 
-  retrieve_post
+  retrieve_post,
+  get_approved_posts
   )
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
@@ -52,6 +53,11 @@ class JSONServer(HandleRequests):
                 return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
             response_body = get_posts()
+            return self.response(response_body, status.HTTP_200_SUCCESS.value)
+        
+        elif url["requested_resource"] == "approved-posts":
+
+            response_body = get_approved_posts()
             return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         else:
