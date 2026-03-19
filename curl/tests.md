@@ -84,7 +84,7 @@ curl --header "Content-Type: application/json" \
 ```bash
 curl --header "Content-Type: application/json" \
   --request POST \
-  --data '{"username":"redy2fry", "password":"krabbypatty1"}' \
+  --data '{"username":"ready2fry", "password":"krabbypatty1"}' \
   'http://localhost:8088/login'
 ```
 
