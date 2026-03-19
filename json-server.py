@@ -12,6 +12,11 @@ from views import (
     update_category,
     delete_category,
 )
+from views import (
+  get_posts, 
+  retrieve_post
+  )
+
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
 
@@ -29,9 +34,8 @@ class JSONServer(HandleRequests):
                 response_body = retrieve_category(url["pk"])
                 return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
-            else:
-                response_body = get_categories()
-                return self.response(response_body, status.HTTP_200_SUCCESS.value)
+            response_body = get_categories()
+            return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         elif url["requested_resource"] == "tags":
             if url["pk"] != 0:
@@ -42,10 +46,20 @@ class JSONServer(HandleRequests):
                 response_body = get_tags()
                 return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
+        elif url["requested_resource"] == "posts":
+            if url["pk"] != 0:
+                response_body = retrieve_post(url["pk"])
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
+
+            response_body = get_posts()
+            return self.response(response_body, status.HTTP_200_SUCCESS.value)
+
         else:
             return self.response(
                 "", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value
             )
+        
+        
 
     def do_PUT(self):
         """Handle PUT requests from a client"""
