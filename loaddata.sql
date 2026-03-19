@@ -178,5 +178,5 @@ VALUES (
 '2026-02-14 14:23:54',
 'https://static.wikia.nocookie.net/spongebob/images/7/79/The_Secret_Box_171.png/revision/latest/scale-to-width-down/1424?cb=20250725165834',
 'Duh. Absolutely, no doubt. It''s not even a question',
-1
+0
 );
