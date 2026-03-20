@@ -282,3 +282,9 @@ VALUES (
   'Texas native and Bikini Bottom''s premier scientist-athlete Sandy Cheeks has built a reputation as the most physically fit resident of the sea floor. "Back in Texas we had a saying: if you ain''t sweatin'', you ain''t livin''," says Cheeks, who holds black belts in three martial arts and once wrestled a giant clam before breakfast. Her treedome gym, which she built herself, features a treadmill, a karate dojo, and what she describes as "the world''s only underwater lasso range." SpongeBob and Patrick have attempted her workout regimen twice, both times ending up in the hospital.',
   1
 );
+
+
+INSERT INTO Comments ('post_id', 'author_id', 'content') VALUES ( 1, 3, 'The things I would do to get my hands on that recipe!!!');
+INSERT INTO Comments ('post_id', 'author_id', 'content') VALUES ( 1, 4, 'I know but I don''t care');
+INSERT INTO Comments ('post_id', 'author_id', 'content') VALUES ( 2, 4, 'What''s wrong with you boy? ');
+INSERT INTO Comments ('post_id', 'author_id', 'content') VALUES ( 5, 1, 'I''m getting snatched for the summer');
