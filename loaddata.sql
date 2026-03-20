@@ -85,21 +85,21 @@ CREATE TABLE "Categories" (
   "label" varchar
 );
 INSERT INTO Categories ('label')
-VALUES ('News');
+VALUES ('Sports');
 INSERT INTO Categories ('label')
 VALUES ('Lifestyle');
 INSERT INTO Categories ('label')
-VALUES ('Work');
+VALUES ('Business');
 INSERT INTO Categories ('label')
 VALUES ('Food');
 INSERT INTO Tags ('label')
-VALUES ('JavaScript');
+VALUES ('Jellyfishing');
 INSERT INTO Tags ('label')
-VALUES ('React');
+VALUES ('BikiniBottom');
 INSERT INTO Tags ('label')
-VALUES ('Python');
+VALUES ('BoatingSchool');
 INSERT INTO Tags ('label')
-VALUES ('Django');
+VALUES ('TreedomeLife');
 INSERT INTO Reactions ('label', 'image_url')
 VALUES ('happy', 'https://pngtree.com/so/happy');
 
@@ -121,7 +121,73 @@ VALUES (
 'I''m SpongeBob SquarePants! I''m a fry cook at the Krusty Krab, the best fry cook in Bikini Bottom — just ask my boss Mr. Krabs, or don''t, he''ll probably charge you for the answer!',
 'ready2fry',
 'krabbypatty1',
-'https://i.ebayimg.com/images/g/qc8AAOSw~Mdk8oWS/s-l1200.jpg',
+'https://i.scdn.co/image/ab6761610000e5eb877d4c061d08c040974224be',
+'2003-14-12',
+1
+);
+INSERT INTO Users (
+'first_name', 
+'last_name', 
+'email', 
+'bio', 
+'username',
+'password', 
+'profile_image_url', 
+'created_on', 
+'active'
+) 
+VALUES (
+'Patrick',
+'Star',
+'patrick.star@bikinibottom.oc',
+'This is Patrick, and I''m not a Krusty Krab!',
+'patrickstar1',
+'starpower2',
+'https://static.wikia.nocookie.net/spongebob/images/1/17/Patrick_Star_Show_Patrick.png',
+'2003-14-12',
+1
+);
+INSERT INTO Users (
+'first_name', 
+'last_name', 
+'email', 
+'bio', 
+'username',
+'password', 
+'profile_image_url', 
+'created_on', 
+'active'
+) 
+VALUES (
+'Gary',
+'Squarepants',
+'snail1@bikinibottom.oc',
+'Meow',
+'garythesnail',
+'meow1',
+'https://upload.wikimedia.org/wikipedia/commons/4/4a/Gary_%28SpongeBob%29_character.png',
+'2003-14-12',
+1
+);
+INSERT INTO Users (
+'first_name', 
+'last_name', 
+'email', 
+'bio', 
+'username',
+'password', 
+'profile_image_url', 
+'created_on', 
+'active'
+) 
+VALUES (
+'Squilliam',
+'Fancyson',
+'squilliam@bikinibottom.oc',
+'World-renowned artist, musician, and entrepreneur. I''ve achieved everything Squidward ever dreamed of, and I did it effortlessly. My unibrow alone has been featured in three galleries.',
+'fancyson_elite',
+'betterthansquid1',
+'https://i1.sndcdn.com/avatars-000451991661-3mzpc2-t1080x1080.jpg',
 '2003-14-12',
 1
 );
@@ -137,11 +203,11 @@ INSERT INTO Posts (
 )
 VALUES (
   1, 
-  2, 
-  'UK''s Cosiest Thatched Cottages', 
-  '2025-10-09 08:30:00', 
-  'https://ichef.bbci.co.uk/images/ic/800xn/p0m7g4l8.jpg.webp', 
-  'Thatched cottages trigger all sorts of signification, drawn from myth and literature," Matt Carey-Williams, founder of his eponymous London art gallery, who owns a thatched cottage in Wiltshire, tells the BBC. "They appear in Little Red Riding Hood and JRR Tolkien''s the Shire [in The Hobbit and The Lord of the Rings]." Also fitting this description is Anne Hathaway''s Cottage, a half-timbered building. Its construction began in 1463.', 
+  4, 
+  'The Best Krabby Patty Secret Formula Theories',
+  '2025-11-14 09:00:00',
+  'https://static.wikia.nocookie.net/spongebob/images/4/48/Plankton%27s_Army_177.png',
+  'Bikini Bottom''s most debated mystery isn''t the Bermuda Triangle — it''s the Krusty Krab''s secret formula. "I''ve dedicated years to uncovering the truth," says Sandy Cheeks, PhD. "My leading hypothesis involves a rare kelp extract native to the sea floor." Plankton, rival restaurateur and owner of the Chum Bucket, was unavailable for comment. Mr. Krabs, when pressed for details, simply replied "I smell money" and walked away.',
   1
 );
 INSERT INTO Posts (
@@ -154,12 +220,12 @@ INSERT INTO Posts (
   'approved'
 )
 VALUES (
-  1, 
-  4, 
-  'Does Eating Cheese Before Bed Cause Nightmares?', 
-  '2026-03-18 10:47:02', 
-  'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/5/31/HE_cheese-board-Getty_4x3.jpg.rend.hgtvcom.616.462.85.suffix/1559329196445.webp',
-  'We went right to the expert to determine the relationship between food and sleep. Karman Meyer RD, LDN, author of Eat To Sleep — What to Eat & When to Eat It for a Good Night''s Sleep isn''t sold on the link between cheese and nightmares. "There''s not any robust research that supports the claim that eating cheese before bed will cause nightmares,” says Meyer. “I''m a regular cheese-eater, at any time of day, and can''t recall the last time I awoke from sleep, stricken by fear from a nightmare. That''s anecdotal evidence, of course, but at least I know for me, there''s nothing to fear in eating cheese at night!” In fact, Karman includes cheese on the "Best Bedtime Snacks" list in her book.', 
+  2, 
+  2, 
+  'Is Living Under a Rock the New Minimalism?',
+  '2025-12-01 10:15:00',
+  'https://static.wikia.nocookie.net/spongebob/images/f/f0/Patrick%27s_house.png',
+  'Patrick Star has been living under a rock for years — and interior design experts are taking notice. "There''s something deeply intentional about it," says renowned designer Pearl Krabs. "No clutter, no distractions, just pure simplicity." Patrick himself describes his design philosophy as "I didn''t know I had a philosophy." The rock currently has no windows, no furniture, and no electricity, which Patrick calls "cozy."',
   1
 );
 INSERT INTO Posts (
@@ -172,11 +238,47 @@ INSERT INTO Posts (
 'approved'
 )
 VALUES (
-1,
 3,
-'Is Our Team the Best?',
-'2026-02-14 14:23:54',
-'https://static.wikia.nocookie.net/spongebob/images/7/79/The_Secret_Box_171.png/revision/latest/scale-to-width-down/1424?cb=20250725165834',
-'Duh. Absolutely, no doubt. It''s not even a question',
+3,
+'Boating School: Why Are Pass Rates So Low?',
+'2026-01-22 11:30:00',
+'https://static.wikia.nocookie.net/spongebob/images/7/76/MrsPuffBoatingSchoolStock.png',
+'Mrs. Puff''s Boating School has reported a 2% pass rate for the third consecutive year, a statistic that instructor Mrs. Puff attributes to "one particular student." SpongeBob SquarePants, who has attempted the boating exam 1,258 times, remains optimistic. "This is definitely my year," he told reporters. "I''ve been practicing on a simulator made of cardboard and dreams." Mrs. Puff was later seen hyperventilating into a paper bag.',
 0
+);
+INSERT INTO Posts (
+  'user_id', 
+  'category_id', 
+  'title', 
+  'publication_date', 
+  'image_url', 
+  'content', 
+  'approved'
+)
+VALUES (
+  1, 
+  2, 
+  'Jellyfishing: Bikini Bottom''s Hottest New Hobby',
+  '2026-02-10 08:45:00',
+  'https://static.wikia.nocookie.net/spongebob/images/a/ab/Jellyfish_Hunter_004.png',
+  'Move over pickleball — jellyfishing is taking Bikini Bottom by storm. Armed with nothing but a net and unbridled enthusiasm, locals are heading to Jellyfish Fields in record numbers. "It''s meditative," says SpongeBob SquarePants, widely regarded as the sport''s foremost expert. "You and the jellyfish, one with nature." Patrick Star, his frequent jellyfishing companion, adds: "I like the part where you catch them." Safety officials remind participants that jellyfish stings remain extremely painful.',
+  1
+);
+INSERT INTO Posts (
+  'user_id', 
+  'category_id', 
+  'title', 
+  'publication_date', 
+  'image_url', 
+  'content', 
+  'approved'
+)
+VALUES (
+  4, 
+  1, 
+  'Sandy Cheeks'' Guide to Staying Fit Under the Sea',
+  '2026-02-28 07:30:00',
+  'https://www.randomgoofiness.com/wp-content/uploads/2012/02/sandy-doing-deadlifts.png',
+  'Texas native and Bikini Bottom''s premier scientist-athlete Sandy Cheeks has built a reputation as the most physically fit resident of the sea floor. "Back in Texas we had a saying: if you ain''t sweatin'', you ain''t livin''," says Cheeks, who holds black belts in three martial arts and once wrestled a giant clam before breakfast. Her treedome gym, which she built herself, features a treadmill, a karate dojo, and what she describes as "the world''s only underwater lasso range." SpongeBob and Patrick have attempted her workout regimen twice, both times ending up in the hospital.',
+  1
 );
