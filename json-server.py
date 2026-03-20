@@ -12,7 +12,7 @@ from views import (
     update_category,
     delete_category,
 )
-from views import get_posts, retrieve_post, get_approved_posts
+from views import get_posts, retrieve_post, get_approved_posts, create_post
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
@@ -159,6 +159,12 @@ class JSONServer(HandleRequests):
             set_token = login_user(request_body)
             if set_token:
                 return self.response(set_token, status.HTTP_200_SUCCESS.value)
+
+        elif url["requested_resource"] == "posts":
+            new_id = create_post(request_body)
+            if new_id:
+                return self.response(new_id, status.HTTP_201_SUCCESS_CREATED.value)
+
         else:
             return self.response(
                 "oops", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA.value

@@ -2,6 +2,7 @@
 
 import sqlite3
 import json
+from datetime import datetime
 
 
 def get_posts():
@@ -54,6 +55,7 @@ def get_posts():
         serialized_posts = json.dumps(posts)
 
     return serialized_posts
+
 
 def get_approved_posts():
     """Run query to get all posts and return list of objects"""
@@ -108,7 +110,6 @@ def get_approved_posts():
     return serialized_posts
 
 
-
 def retrieve_post(pk):
     """Run query to get a single post and return serialized result"""
     with sqlite3.connect("./db.sqlite3") as conn:
@@ -153,3 +154,53 @@ def retrieve_post(pk):
         serialized_post = json.dumps(post)
 
     return serialized_post
+
+
+def create_post(newPostObj):
+    """Adds a post to the database
+
+    Args:
+        newPostObj (dictionary): The dictionary passed to the posts post request
+
+    Returns:
+        json string: Contains the id of the newly created post
+    """
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(
+            """
+            INSERT INTO Posts (
+              'user_id', 
+              'category_id', 
+              'title', 
+              'publication_date', 
+              'image_url', 
+              'content', 
+              'approved'
+            )
+            VALUES (
+              ?, 
+              ?, 
+              ?,
+              ?,
+              ?,
+              ?,
+              ?
+            );
+            """,
+            (
+                newPostObj["userId"],
+                newPostObj["categoryId"],
+                newPostObj["title"],
+                datetime.now(),
+                newPostObj["imageUrl"],
+                newPostObj["content"],
+                1,
+            ),
+        )
+
+        id = db_cursor.lastrowid
+
+        return json.dumps({"id": id})
