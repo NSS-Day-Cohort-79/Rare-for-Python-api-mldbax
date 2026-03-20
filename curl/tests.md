@@ -73,6 +73,7 @@ curl -v --header "Content-Type: application/json" \
 ## Users test
 
 ### Register
+
 ```bash
 curl --header "Content-Type: application/json" \
   --request POST \
@@ -81,6 +82,7 @@ curl --header "Content-Type: application/json" \
 ```
 
 ### Login
+
 ```bash
 curl --header "Content-Type: application/json" \
   --request POST \
@@ -98,3 +100,14 @@ curl 'http://localhost:8088/posts' | jq
 curl 'http://localhost:8088/posts/1' | jq
 
 curl 'http://localhost:8088/approved-posts' | jq
+
+```
+
+### POST
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"userId":1,"categoryId":1,"title":"test title","imageUrl":"test.url","content":"test post please ignore"}' \
+  'http://localhost:8088/posts'
+```
