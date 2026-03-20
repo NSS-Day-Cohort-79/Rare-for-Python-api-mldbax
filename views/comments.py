@@ -1,0 +1,5 @@
+# get_comments_by_postId(postId)
+# get_comment_by_id(pk)
+# create_comment(comment_data)
+# delete_comment(pk)
+# update_comment(pk, comment_data)
