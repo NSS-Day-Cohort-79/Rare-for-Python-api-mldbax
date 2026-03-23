@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS Reactions;
 DROP TABLE IF EXISTS PostReactions;
 DROP TABLE IF EXISTS Tags;
 DROP TABLE IF EXISTS PostTags;
+
 CREATE TABLE "Users" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "first_name" varchar,
@@ -51,7 +52,9 @@ CREATE TABLE "Comments" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "post_id" INTEGER,
   "author_id" INTEGER,
+  "subject" varchar,
   "content" varchar,
+  "created_on" datetime,
   FOREIGN KEY(`post_id`) REFERENCES `Posts`(`id`),
   FOREIGN KEY(`author_id`) REFERENCES `Users`(`id`)
 );
@@ -284,7 +287,11 @@ VALUES (
 );
 
 
-INSERT INTO Comments ('post_id', 'author_id', 'content') VALUES ( 1, 3, 'The things I would do to get my hands on that recipe!!!');
-INSERT INTO Comments ('post_id', 'author_id', 'content') VALUES ( 1, 4, 'I know but I don''t care');
-INSERT INTO Comments ('post_id', 'author_id', 'content') VALUES ( 2, 4, 'What''s wrong with you boy? ');
-INSERT INTO Comments ('post_id', 'author_id', 'content') VALUES ( 5, 1, 'I''m getting snatched for the summer');
+INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 1, 3, 'GIMME','The things I would do to get my hands on that recipe!!!', '2026-01-01');
+INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 1, 4, 'Who cares?', 'I know but I don''t care','2025-12-03');
+INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 2, 4, 'Who lives like this?', 'What''s wrong with you boy?', '2025-12-05');
+INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 2, 1, 'Love it!', 'This is my favorite hangout spot!', '2025-12-02');
+INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 3, 1, 'One day!', 'Never give up friends!', '2026-01-30');
+INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 3, 4, 'Please stop', 'Mr. Squarepants is a danger to bikini bottom!', '2026-01-29');
+INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 3, 2, 'I believe in you!', 'Can''t wait for the road trips one day Spongebob, you can do it!', '2026-01-31');
+INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 5, 1, 'Work it', 'I''m getting snatched for the summer', '2026-03-01');
