@@ -120,3 +120,13 @@ curl --header "Content-Type: application/json" \
   --data '{"id": 2, "userId": 2, "categoryId": 2, "title": "New Title", "publicationDate": "2025-12-01 10:15:00", "imageUrl": "https://static.wikia.nocookie.net/spongebob/images/f/f0/Patrick%27s_house.png", "content": "updated content", "approved": 1}' \
   'http://localhost:8088/posts/1'
 ```
+
+## Comments
+
+### GET
+
+```bash
+curl 'http://localhost:8088/post-comments/1' | jq
+
+curl 'http://localhost:8088/post-comments/4' | jq
+```
