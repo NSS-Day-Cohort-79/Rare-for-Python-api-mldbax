@@ -212,14 +212,14 @@ def create_post(newPostObj):
         return json.dumps({"id": id})
 
 
-def update_post(newPostObj):
+def update_post(post_obj):
     """Updates an existing post in the database
 
     Args:
-        newPostObj (dictionary): The dictionary passed to the posts post request
+        postObj (dictionary): The dictionary passed to the posts PUT request
 
     Returns:
-        json string: Contains the id of the newly created post
+        json string: Contains the id of the updated post
     """
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
@@ -227,33 +227,26 @@ def update_post(newPostObj):
 
         db_cursor.execute(
             """
-            INSERT INTO Posts (
-              'user_id', 
-              'category_id', 
-              'title', 
-              'publication_date', 
-              'image_url', 
-              'content', 
-              'approved'
-            )
-            VALUES (
-              ?, 
-              ?, 
-              ?,
-              ?,
-              ?,
-              ?,
-              ?
-            );
+            UPDATE Posts 
+                SET
+                    user_id = ?, 
+                    category_id = ?, 
+                    title = ?,
+                    publication_date = ?, 
+                    image_url = ?, 
+                    content = ?, 
+                    approved = ?
+                WHERE id = ?            
             """,
             (
-                newPostObj["userId"],
-                newPostObj["categoryId"],
-                newPostObj["title"],
-                datetime.now(),
-                newPostObj["imageUrl"],
-                newPostObj["content"],
-                1,
+                post_obj["userId"],
+                post_obj["categoryId"],
+                post_obj["title"],
+                post_obj["publicationDate"],
+                post_obj["imageUrl"],
+                post_obj["content"],
+                post_obj["approved"],
+                post_obj["id"],
             ),
         )
 

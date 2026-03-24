@@ -12,7 +12,7 @@ from views import (
     update_category,
     delete_category,
 )
-from views import get_posts, retrieve_post, get_approved_posts, create_post
+from views import get_posts, retrieve_post, get_approved_posts, create_post, update_post
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
@@ -83,6 +83,14 @@ class JSONServer(HandleRequests):
         elif url["requested_resource"] == "tags":
             if pk != 0:
                 successfully_updated = update_tag(pk, request_body)
+                if successfully_updated:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
+        # CD - Added endpoint for updating posts
+        elif url["requested_resource"] == "posts":
+            if pk != 0:
+                successfully_updated = update_post(request_body)
                 if successfully_updated:
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
