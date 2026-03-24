@@ -25,7 +25,8 @@ def retrieve_comments(post_id):
                 c.created_on,
                 c.author_id,
                 p.title, 
-                u.username 
+                u.first_name,
+                u.last_name
             FROM Comments c 
             JOIN Users u 
             ON u.id = c.author_id
@@ -39,7 +40,11 @@ def retrieve_comments(post_id):
         query_results = db_cursor.fetchall()
         comments = []
         for row in query_results:
-            user = {"authorId": row["author_id"], "username": row["username"]}
+            user = {
+                "authorId": row["author_id"],
+                "firstName": row["first_name"],
+                "lastName": row["last_name"],
+            }
             post = {"postId": row["post_id"], "title": row["title"]}
             comment = {
                 "id": row["id"],
