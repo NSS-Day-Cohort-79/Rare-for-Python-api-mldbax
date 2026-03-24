@@ -78,10 +78,10 @@ def create_comment(comment_data):
             )
             """,
             (
-                newCommentObj["postId"],
-                newCommentObj["authorId"],
-                newCommentObj["subject"],
-                newCommentObj["content"],
+                comment_data["postId"],
+                comment_data["authorId"],
+                comment_data["subject"],
+                comment_data["content"],
                 datetime.now(),
             ),
         )

@@ -16,7 +16,7 @@ from views import get_posts, retrieve_post, get_approved_posts, create_post
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
-from views import retrieve_comments
+from views import retrieve_comments, create_comment
 
 
 class JSONServer(HandleRequests):
@@ -171,6 +171,14 @@ class JSONServer(HandleRequests):
             new_id = create_post(request_body)
             if new_id:
                 return self.response(new_id, status.HTTP_201_SUCCESS_CREATED.value)
+
+        elif url["requested_resource"] == "comments":
+            new_comment_id = create_comment(request_body)
+            if new_comment_id:
+                return self.response(
+                    new_comment_id,
+                    status.HTTP_201_SUCCESS_CREATED.value,
+                )
 
         else:
             return self.response(
