@@ -121,3 +121,11 @@ curl 'http://localhost:8088/post-comments/1' | jq
 
 curl 'http://localhost:8088/post-comments/4' | jq
 ```
+
+### POST
+``` bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"userId":1,"authorId":1,"subject":"test subject","content":"test content"}' \
+  'http://localhost:8088/comments'
+  ```
