@@ -111,3 +111,13 @@ curl --header "Content-Type: application/json" \
   --data '{"userId":1,"categoryId":1,"title":"test title","imageUrl":"test.url","content":"test post please ignore"}' \
   'http://localhost:8088/posts'
 ```
+
+## Comments
+
+### GET
+
+```bash
+curl 'http://localhost:8088/post-comments/1' | jq
+
+curl 'http://localhost:8088/post-comments/4' | jq
+```

@@ -16,6 +16,8 @@ from views import get_posts, retrieve_post, get_approved_posts, create_post
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
+from views import retrieve_comments
+
 
 class JSONServer(HandleRequests):
     """Server class to handle incoming HTTP requests for shipping ships"""
@@ -55,6 +57,11 @@ class JSONServer(HandleRequests):
 
             response_body = get_approved_posts()
             return self.response(response_body, status.HTTP_200_SUCCESS.value)
+
+        elif url["requested_resource"] == "post-comments":
+            if url["pk"] != 0:
+                response_body = retrieve_comments(url["pk"])
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         else:
             return self.response(
