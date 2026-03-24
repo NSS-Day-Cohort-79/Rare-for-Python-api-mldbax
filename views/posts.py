@@ -37,15 +37,15 @@ def get_posts():
         # Initialize an empty list and then add each dictionary to it
         posts = []
         for row in query_results:
-            user = {"first_name": row["first_name"], "last_name": row["last_name"]}
+            user = {"firstName": row["first_name"], "lastName": row["last_name"]}
             category = {"label": row["label"]}
             post = {
                 "id": row["post_id"],
                 "user": user,
                 "category": category,
                 "title": row["title"],
-                "publication_date": row["publication_date"],
-                "image_url": row["image_url"],
+                "publicationDate": row["publication_date"],
+                "imageUrl": row["image_url"],
                 "content": row["content"],
                 "approved": row["approved"],
             }
@@ -90,15 +90,15 @@ def get_approved_posts():
         # Initialize an empty list and then add each dictionary to it
         approved_posts = []
         for row in query_results:
-            user = {"first_name": row["first_name"], "last_name": row["last_name"]}
+            user = {"firstName": row["first_name"], "lastName": row["last_name"]}
             category = {"label": row["label"]}
             post = {
                 "id": row["post_id"],
                 "user": user,
                 "category": category,
                 "title": row["title"],
-                "publication_date": row["publication_date"],
-                "image_url": row["image_url"],
+                "publicationDate": row["publication_date"],
+                "imageUrl": row["image_url"],
                 "content": row["content"],
                 "approved": row["approved"],
             }
@@ -117,10 +117,13 @@ def retrieve_post(pk):
         db_cursor = conn.cursor()
 
         # Expand user_id to get author name AND expand category_id to get category name
+        # CD - Added user_id and category_id to SELECT
         db_cursor.execute(
             """
             SELECT
                 p.id post_id,
+                p.user_id,
+                p.category_id,
                 p.title,
                 p.publication_date,
                 p.image_url,
@@ -140,14 +143,17 @@ def retrieve_post(pk):
         print(dict(query_results))
 
         # Expanded single post
+        # CD - Added category and userID, changed to camel case
         row = query_results
         post = {
             "id": row["post_id"],
-            "user": {"first_name": row["first_name"], "last_name": row["last_name"]},
+            "userId": row["user_id"],
+            "user": {"firstName": row["first_name"], "lastName": row["last_name"]},
+            "categoryId": row["category_id"],
             "category": {"label": row["label"]},
             "title": row["title"],
-            "publication_date": row["publication_date"],
-            "image_url": row["image_url"],
+            "publicationDate": row["publication_date"],
+            "imageUrl": row["image_url"],
             "content": row["content"],
             "approved": row["approved"],
         }
@@ -198,6 +204,49 @@ def create_post(newPostObj):
                 newPostObj["imageUrl"],
                 newPostObj["content"],
                 1,
+            ),
+        )
+
+        id = db_cursor.lastrowid
+
+        return json.dumps({"id": id})
+
+
+def update_post(post_obj):
+    """Updates an existing post in the database
+
+    Args:
+        postObj (dictionary): The dictionary passed to the posts PUT request
+
+    Returns:
+        json string: Contains the id of the updated post
+    """
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(
+            """
+            UPDATE Posts 
+                SET
+                    user_id = ?, 
+                    category_id = ?, 
+                    title = ?,
+                    publication_date = ?, 
+                    image_url = ?, 
+                    content = ?, 
+                    approved = ?
+                WHERE id = ?            
+            """,
+            (
+                post_obj["userId"],
+                post_obj["categoryId"],
+                post_obj["title"],
+                post_obj["publicationDate"],
+                post_obj["imageUrl"],
+                post_obj["content"],
+                post_obj["approved"],
+                post_obj["id"],
             ),
         )
 
