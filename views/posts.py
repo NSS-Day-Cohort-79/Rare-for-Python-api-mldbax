@@ -37,15 +37,15 @@ def get_posts():
         # Initialize an empty list and then add each dictionary to it
         posts = []
         for row in query_results:
-            user = {"first_name": row["first_name"], "last_name": row["last_name"]}
+            user = {"firstName": row["first_name"], "lastName": row["last_name"]}
             category = {"label": row["label"]}
             post = {
                 "id": row["post_id"],
                 "user": user,
                 "category": category,
                 "title": row["title"],
-                "publication_date": row["publication_date"],
-                "image_url": row["image_url"],
+                "publicationDate": row["publication_date"],
+                "imageUrl": row["image_url"],
                 "content": row["content"],
                 "approved": row["approved"],
             }
@@ -90,15 +90,15 @@ def get_approved_posts():
         # Initialize an empty list and then add each dictionary to it
         approved_posts = []
         for row in query_results:
-            user = {"first_name": row["first_name"], "last_name": row["last_name"]}
+            user = {"firstName": row["first_name"], "lastName": row["last_name"]}
             category = {"label": row["label"]}
             post = {
                 "id": row["post_id"],
                 "user": user,
                 "category": category,
                 "title": row["title"],
-                "publication_date": row["publication_date"],
-                "image_url": row["image_url"],
+                "publicationDate": row["publication_date"],
+                "imageUrl": row["image_url"],
                 "content": row["content"],
                 "approved": row["approved"],
             }
@@ -148,7 +148,7 @@ def retrieve_post(pk):
         post = {
             "id": row["post_id"],
             "userId": row["user_id"],
-            "user": {"first_name": row["first_name"], "last_name": row["last_name"]},
+            "user": {"firstName": row["first_name"], "lastName": row["last_name"]},
             "categoryId": row["category_id"],
             "category": {"label": row["label"]},
             "title": row["title"],
