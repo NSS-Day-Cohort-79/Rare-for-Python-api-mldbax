@@ -8,4 +8,4 @@ from .category import (
 )
 from .posts import get_posts, retrieve_post, get_approved_posts, create_post
 from .tag import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
-from .comments import retrieve_comments
+from .comments import retrieve_comments, create_comment
