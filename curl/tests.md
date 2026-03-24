@@ -117,5 +117,7 @@ curl --header "Content-Type: application/json" \
 ### GET
 
 ```bash
-curl 'http://localhost:8088/comments/1' | jq
+curl 'http://localhost:8088/post-comments/1' | jq
+
+curl 'http://localhost:8088/post-comments/4' | jq
 ```
