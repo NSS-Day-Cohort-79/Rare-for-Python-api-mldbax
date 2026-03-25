@@ -148,3 +148,11 @@ curl --header "Content-Type: application/json" \
   --data '{"id":1,"postId":1,"authorId":3,"subject":"test subject - was GIMME","content":"test content - was i need to get my hands"}' \
   'http://localhost:8088/comments/1'
 ```
+
+### DELETE
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request DELETE \
+  'http://localhost:8088/comments/1' | jq
+```
