@@ -139,3 +139,12 @@ curl --header "Content-Type: application/json" \
   --data '{"postId":1,"authorId":1,"subject":"test subject","content":"test content"}' \
   'http://localhost:8088/comments'
 ```
+
+### PUT
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"id":1,"postId":1,"authorId":3,"subject":"test subject - was GIMME","content":"test content - was i need to get my hands"}' \
+  'http://localhost:8088/comments/1'
+```
