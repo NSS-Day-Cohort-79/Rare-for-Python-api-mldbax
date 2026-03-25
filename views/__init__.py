@@ -14,4 +14,4 @@ from .posts import (
     update_post,
 )
 from .tag import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
-from .comments import retrieve_comments
+from .comments import retrieve_comments, create_comment
