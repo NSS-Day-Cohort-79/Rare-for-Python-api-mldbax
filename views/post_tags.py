@@ -20,10 +20,12 @@ def get_post_tags_by_post_id(post_id):
         db_cursor.execute(
             """
             SELECT
-                id,
-                post_id,
-                tag_id
-            FROM PostTags
+                pt.id,
+                pt.post_id,
+                pt.tag_id,
+                t.label
+            FROM PostTags pt
+            JOIN Tags t on t.id = pt.tag_id
             WHERE post_id = ?
             """,
             (post_id,),
@@ -34,7 +36,12 @@ def get_post_tags_by_post_id(post_id):
         post_tags = []
         for row in query_results:
             post_tags.append(
-                {"id": row["id"], "postId": row["post_id"], "tagId": row["tag_id"]}
+                {
+                    "id": row["id"],
+                    "postId": row["post_id"],
+                    "tagId": row["tag_id"],
+                    "tag": {"id": row["tag_id"], "label": row["label"]},
+                }
             )
 
         # Serialize Python list to JSON encoded string
