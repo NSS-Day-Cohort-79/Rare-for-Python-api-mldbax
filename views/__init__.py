@@ -15,3 +15,4 @@ from .posts import (
 )
 from .tag import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 from .comments import retrieve_comments
+from .post_tags import get_post_tags_by_post_id
