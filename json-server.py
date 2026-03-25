@@ -16,7 +16,7 @@ from views import get_posts, retrieve_post, get_approved_posts, create_post, upd
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
-from views import retrieve_comments, create_comment, update_comment
+from views import retrieve_comments, create_comment, update_comment, delete_comment
 
 
 class JSONServer(HandleRequests):
@@ -135,6 +135,17 @@ class JSONServer(HandleRequests):
         elif url["requested_resource"] == "tags":
             if pk != 0:
                 successfully_deleted = delete_tag(pk)
+                if successfully_deleted:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
+                return self.response(
+                    "Requested resource not found",
+                    status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value,
+                )
+        elif url["requested_resource"] == "comments":
+            if pk != 0:
+                successfully_deleted = delete_comment(pk)
                 if successfully_deleted:
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
