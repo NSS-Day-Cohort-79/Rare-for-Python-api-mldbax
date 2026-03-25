@@ -16,7 +16,7 @@ from views import get_posts, retrieve_post, get_approved_posts, create_post, upd
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
-from views import retrieve_comments, create_comment
+from views import retrieve_comments, create_comment, update_comment
 
 
 class JSONServer(HandleRequests):
@@ -98,6 +98,13 @@ class JSONServer(HandleRequests):
         elif url["requested_resource"] == "posts":
             if pk != 0:
                 successfully_updated = update_post(request_body)
+                if successfully_updated:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
+        elif url["requested_resource"] == "comments":
+            if pk != 0:
+                successfully_updated = update_comment(pk, request_body)
                 if successfully_updated:
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
