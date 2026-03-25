@@ -7,6 +7,7 @@
 
 import sqlite3
 import json
+from datetime import datetime
 
 
 def retrieve_comments(post_id):
@@ -58,3 +59,31 @@ def retrieve_comments(post_id):
 
         serialized_comments = json.dumps(comments)
     return serialized_comments
+
+
+def create_comment(comment_data):
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+        db_cursor.execute(
+            """
+            INSERT INTO Comments (
+            post_id, 
+            author_id, 
+            subject, 
+            content, 
+            created_on
+            ) VALUES (
+            ?,?,?,?,?
+            )
+            """,
+            (
+                comment_data["postId"],
+                comment_data["authorId"],
+                comment_data["subject"],
+                comment_data["content"],
+                datetime.now(),
+            ),
+        )
+        new_comment_id = db_cursor.lastrowid
+        return json.dumps(new_comment_id)
