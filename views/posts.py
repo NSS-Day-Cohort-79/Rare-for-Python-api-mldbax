@@ -253,3 +253,19 @@ def update_post(post_obj):
         id = db_cursor.lastrowid
 
         return json.dumps({"id": id})
+
+
+def delete_post(post_id):
+    """Delete a post from the database"""
+    with sqlite3.connect("./db.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(
+            """
+            DELETE FROM Posts
+            WHERE id = ?
+            """,
+            (post_id),
+        )
+
+        return json.dumps({"message": "Post deleted successfully"})
