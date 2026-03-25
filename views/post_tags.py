@@ -40,4 +40,4 @@ def get_post_tags_by_post_id(post_id):
         # Serialize Python list to JSON encoded string
         serialized_posts = json.dumps(post_tags)
 
-    return serialized_posts
+    return post_tags
