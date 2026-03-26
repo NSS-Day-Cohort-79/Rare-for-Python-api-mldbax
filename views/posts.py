@@ -3,6 +3,7 @@
 import sqlite3
 import json
 from datetime import datetime
+from .post_tags import get_post_tags_by_post_id
 
 
 def get_posts():
@@ -39,6 +40,7 @@ def get_posts():
         for row in query_results:
             user = {"firstName": row["first_name"], "lastName": row["last_name"]}
             category = {"label": row["label"]}
+            tags = get_post_tags_by_post_id(row["post_id"])
             post = {
                 "id": row["post_id"],
                 "user": user,
@@ -48,6 +50,7 @@ def get_posts():
                 "imageUrl": row["image_url"],
                 "content": row["content"],
                 "approved": row["approved"],
+                "tags": tags,
             }
             posts.append(post)
 
@@ -92,6 +95,7 @@ def get_approved_posts():
         for row in query_results:
             user = {"firstName": row["first_name"], "lastName": row["last_name"]}
             category = {"label": row["label"]}
+            tags = get_post_tags_by_post_id(row["post_id"])
             post = {
                 "id": row["post_id"],
                 "user": user,
@@ -101,6 +105,7 @@ def get_approved_posts():
                 "imageUrl": row["image_url"],
                 "content": row["content"],
                 "approved": row["approved"],
+                "tags": tags,
             }
             approved_posts.append(post)
 
@@ -156,6 +161,7 @@ def retrieve_post(pk):
             "imageUrl": row["image_url"],
             "content": row["content"],
             "approved": row["approved"],
+            "tags": get_post_tags_by_post_id(row["post_id"]),
         }
         serialized_post = json.dumps(post)
 
