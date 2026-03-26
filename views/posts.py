@@ -324,7 +324,7 @@ def delete_post(post_id):
             DELETE FROM Posts
             WHERE id = ?
             """,
-            (post_id),
+            (post_id,),
         )
 
         return json.dumps({"message": "Post deleted successfully"})
