@@ -123,9 +123,9 @@ curl --header "Content-Type: application/json" \
 
 ### DELETE
 ```bash
-curl --header "Content-Type: application/json" \
+curl -v --header "Content-Type: application/json" \
   --request DELETE \
-  'http://localhost:8088/posts/6'
+  'http://localhost:8088/posts/6' | jq
 ```
 
 ## Comments
