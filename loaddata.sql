@@ -282,6 +282,18 @@ VALUES (
     'Texas native and Bikini Bottom''s premier scientist-athlete Sandy Cheeks has built a reputation as the most physically fit resident of the sea floor. "Back in Texas we had a saying: if you ain''t sweatin'', you ain''t livin''," says Cheeks, who holds black belts in three martial arts and once wrestled a giant clam before breakfast. Her treedome gym, which she built herself, features a treadmill, a karate dojo, and what she describes as "the world''s only underwater lasso range." SpongeBob and Patrick have attempted her workout regimen twice, both times ending up in the hospital.',
     1
   );
+  VALUES (
+  4,
+  2,
+  'Squidward The Talentless',
+  '2026-03-26',
+  'https://pbs.twimg.com/media/Eqgm8y7UYAARKaD.jpg'
+  'Just had to check in on my old pal Squidward. Still working at the Krusty Krab after all these years, still can''t play clarinet, still can''t paint. I''ve been to Paris, performed at the most elite establishments, and won countless awards for my artistic excellence. Meanwhile, this guy thinks he''s cultured because he lives in a house shaped like an Easter Island head. His clarinet playing gives me migraines, his art would embarrass a first grader, and his dance moves? Please. I''ve seen more grace in SpongeBob''s jellyfishing. The difference between us isn''t just talent—it''s class, sophistication, and the ability to actually succeed at something. But hey, at least he''s consistent. Consistently mediocre. #Squilliam #TalentedAndThenSome #BetterThanSquidward #JustFacts',
+  1
+  );
+
+
+
 INSERT INTO Comments (
     'post_id',
     'author_id',
