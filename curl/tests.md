@@ -139,3 +139,14 @@ curl --header "Content-Type: application/json" \
   --data '{"postId":1,"authorId":1,"subject":"test subject","content":"test content"}' \
   'http://localhost:8088/comments'
 ```
+
+## PostTags tests
+
+### POST
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"postId":9,"tagId":1}' \
+  'http://localhost:8088/post-tags'
+```

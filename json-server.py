@@ -18,6 +18,8 @@ from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
 from views import retrieve_comments, create_comment
 
+from views import add_post_tag
+
 
 class JSONServer(HandleRequests):
     """Server class to handle incoming HTTP requests for shipping ships"""
@@ -177,6 +179,11 @@ class JSONServer(HandleRequests):
 
         elif url["requested_resource"] == "posts":
             new_id = create_post(request_body)
+            if new_id:
+                return self.response(new_id, status.HTTP_201_SUCCESS_CREATED.value)
+
+        elif url["requested_resource"] == "post-tags":
+            new_id = add_post_tag(request_body)
             if new_id:
                 return self.response(new_id, status.HTTP_201_SUCCESS_CREATED.value)
 

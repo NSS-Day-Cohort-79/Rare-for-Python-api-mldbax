@@ -44,7 +44,28 @@ def get_post_tags_by_post_id(post_id):
                 }
             )
 
-        # Serialize Python list to JSON encoded string
-        serialized_posts = json.dumps(post_tags)
-
     return post_tags
+
+
+def add_post_tag(new_post_tag):
+    """Creates a new entry for given post_tag
+
+    Args:
+        new_post_tag (dictionary): dictionary containing information for new post tag
+
+    Returns:
+        id of created post_tag
+    """
+    with sqlite3.connect("./db.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(
+            """
+            INSERT INTO PostTags VALUES (null, ?, ?)
+            """,
+            (new_post_tag["postId"], new_post_tag["tagId"]),
+        )
+
+        id = db_cursor.lastrowid
+
+        return json.dumps({"id": id})
