@@ -129,6 +129,8 @@ curl --header "Content-Type: application/json" \
 curl 'http://localhost:8088/post-comments/1' | jq
 
 curl 'http://localhost:8088/post-comments/4' | jq
+
+curl 'http://localhost:8088/comment/4' | jq
 ```
 
 ### POST

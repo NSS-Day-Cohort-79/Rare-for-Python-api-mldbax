@@ -16,7 +16,13 @@ from views import get_posts, retrieve_post, get_approved_posts, create_post, upd
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
-from views import retrieve_comments, create_comment, update_comment, delete_comment
+from views import (
+    retrieve_comments,
+    create_comment,
+    update_comment,
+    delete_comment,
+    get_comment,
+)
 
 
 class JSONServer(HandleRequests):
@@ -61,6 +67,11 @@ class JSONServer(HandleRequests):
         elif url["requested_resource"] == "post-comments":
             if url["pk"] != 0:
                 response_body = retrieve_comments(url["pk"])
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
+
+        elif url["requested_resource"] == "comment":
+            if url["pk"] != 0:
+                response_body = get_comment(url["pk"])
                 return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         else:
