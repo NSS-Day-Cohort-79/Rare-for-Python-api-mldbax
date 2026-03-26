@@ -72,7 +72,6 @@ def get_comment(comment_pk):
                 post_id,
                 subject, 
                 content, 
-                created_on,
                 author_id
             FROM Comments
             WHERE id = ?
@@ -87,7 +86,6 @@ def get_comment(comment_pk):
             "postId": row["post_id"],
             "subject": row["subject"],
             "content": row["content"],
-            "createdOn": row["created_on"],
         }
         serialized_comment = json.dumps(comment)
     return serialized_comment
