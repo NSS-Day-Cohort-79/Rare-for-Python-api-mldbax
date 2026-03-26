@@ -287,7 +287,7 @@ VALUES (
   2,
   'Squidward The Talentless',
   '2026-03-26',
-  'https://pbs.twimg.com/media/Eqgm8y7UYAARKaD.jpg'
+  'https://pbs.twimg.com/media/Eqgm8y7UYAARKaD.jpg',
   'Just had to check in on my old pal Squidward. Still working at the Krusty Krab after all these years, still can''t play clarinet, still can''t paint. I''ve been to Paris, performed at the most elite establishments, and won countless awards for my artistic excellence. Meanwhile, this guy thinks he''s cultured because he lives in a house shaped like an Easter Island head. His clarinet playing gives me migraines, his art would embarrass a first grader, and his dance moves? Please. I''ve seen more grace in SpongeBob''s jellyfishing. The difference between us isn''t just talent—it''s class, sophistication, and the ability to actually succeed at something. But hey, at least he''s consistent. Consistently mediocre. #Squilliam #TalentedAndThenSome #BetterThanSquidward #JustFacts',
   1
   );
