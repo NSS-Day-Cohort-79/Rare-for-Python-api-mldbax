@@ -8,6 +8,7 @@ from .category import (
 )
 from .posts import (
     get_posts,
+    get_user_posts,
     retrieve_post,
     get_approved_posts,
     create_post,

@@ -14,6 +14,7 @@ from views import (
 )
 from views import (
     get_posts,
+    get_user_posts,
     retrieve_post,
     get_approved_posts,
     create_post,
@@ -64,6 +65,11 @@ class JSONServer(HandleRequests):
 
             response_body = get_approved_posts()
             return self.response(response_body, status.HTTP_200_SUCCESS.value)
+
+        elif url["requested_resource"] == "user-posts":
+            if url["pk"] != 0:
+                response_body = get_user_posts(url["pk"])
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         elif url["requested_resource"] == "post-comments":
             if url["pk"] != 0:

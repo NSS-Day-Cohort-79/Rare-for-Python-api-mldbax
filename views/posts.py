@@ -57,6 +57,59 @@ def get_posts():
     return serialized_posts
 
 
+def get_user_posts(user_id):
+    """Run query to get all posts by a specific user and return list of objects"""
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(
+            """
+            SELECT
+                p.id post_id,
+                p.user_id,
+                p.category_id,
+                p.title,
+                p.publication_date,
+                p.image_url,
+                p.content,
+                p.approved,
+                u.first_name, 
+                u.last_name,
+                c.label 
+            FROM Posts p
+            JOIN Users u ON u.id = p.user_id
+            JOIN Categories c ON c.id = p.category_id
+            WHERE p.user_id = ?
+            ORDER BY p.publication_date DESC
+            """,
+            (user_id,),
+        )
+        query_results = db_cursor.fetchall()
+
+        posts = []
+        for row in query_results:
+            user = {"firstName": row["first_name"], "lastName": row["last_name"]}
+            category = {"label": row["label"]}
+            post = {
+                "id": row["post_id"],
+                "userId": row["user_id"],
+                "user": user,
+                "categoryId": row["category_id"],
+                "category": category,
+                "title": row["title"],
+                "publicationDate": row["publication_date"],
+                "imageUrl": row["image_url"],
+                "content": row["content"],
+                "approved": row["approved"],
+            }
+            posts.append(post)
+
+        serialized_posts = json.dumps(posts)
+
+    return serialized_posts
+
+
 def get_approved_posts():
     """Run query to get all posts and return list of objects"""
     # Open a connection to the database
