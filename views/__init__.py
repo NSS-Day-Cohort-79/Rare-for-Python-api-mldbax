@@ -14,5 +14,11 @@ from .posts import (
     update_post,
 )
 from .tag import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
-from .comments import retrieve_comments, create_comment, update_comment, delete_comment
+from .comments import (
+    retrieve_comments,
+    create_comment,
+    update_comment,
+    delete_comment,
+    get_comment,
+)
 from .post_tags import get_post_tags_by_post_id
