@@ -121,6 +121,13 @@ curl --header "Content-Type: application/json" \
   'http://localhost:8088/posts/1'
 ```
 
+### DELETE
+```bash
+curl --header "Content-Type: application/json" \
+  --request DELETE \
+  'http://localhost:8088/posts/6'
+```
+
 ## Comments
 
 ### GET
