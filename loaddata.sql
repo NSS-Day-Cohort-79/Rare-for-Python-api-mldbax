@@ -8,7 +8,6 @@ DROP TABLE IF EXISTS Reactions;
 DROP TABLE IF EXISTS PostReactions;
 DROP TABLE IF EXISTS Tags;
 DROP TABLE IF EXISTS PostTags;
-
 CREATE TABLE "Users" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "first_name" varchar,
@@ -105,193 +104,309 @@ INSERT INTO Tags ('label')
 VALUES ('TreedomeLife');
 INSERT INTO Reactions ('label', 'image_url')
 VALUES ('happy', 'https://pngtree.com/so/happy');
-
 INSERT INTO Users (
-'first_name', 
-'last_name', 
-'email', 
-'bio', 
-'username',
-'password', 
-'profile_image_url', 
-'created_on', 
-'active'
-) 
+    'first_name',
+    'last_name',
+    'email',
+    'bio',
+    'username',
+    'password',
+    'profile_image_url',
+    'created_on',
+    'active'
+  )
 VALUES (
-'Spongebob',
-'Squarepants',
-'imready@thekrustykrab.oc',
-'I''m SpongeBob SquarePants! I''m a fry cook at the Krusty Krab, the best fry cook in Bikini Bottom — just ask my boss Mr. Krabs, or don''t, he''ll probably charge you for the answer!',
-'ready2fry',
-'krabbypatty1',
-'https://i.scdn.co/image/ab6761610000e5eb877d4c061d08c040974224be',
-'2003-14-12',
-1
-);
+    'Spongebob',
+    'Squarepants',
+    'imready@thekrustykrab.oc',
+    'I''m SpongeBob SquarePants! I''m a fry cook at the Krusty Krab, the best fry cook in Bikini Bottom — just ask my boss Mr. Krabs, or don''t, he''ll probably charge you for the answer!',
+    'ready2fry',
+    'krabbypatty1',
+    'https://i.scdn.co/image/ab6761610000e5eb877d4c061d08c040974224be',
+    '2003-14-12',
+    1
+  );
 INSERT INTO Users (
-'first_name', 
-'last_name', 
-'email', 
-'bio', 
-'username',
-'password', 
-'profile_image_url', 
-'created_on', 
-'active'
-) 
+    'first_name',
+    'last_name',
+    'email',
+    'bio',
+    'username',
+    'password',
+    'profile_image_url',
+    'created_on',
+    'active'
+  )
 VALUES (
-'Patrick',
-'Star',
-'patrick.star@bikinibottom.oc',
-'This is Patrick, and I''m not a Krusty Krab!',
-'patrickstar1',
-'starpower2',
-'https://static.wikia.nocookie.net/spongebob/images/1/17/Patrick_Star_Show_Patrick.png',
-'2003-14-12',
-1
-);
+    'Patrick',
+    'Star',
+    'patrick.star@bikinibottom.oc',
+    'This is Patrick, and I''m not a Krusty Krab!',
+    'patrickstar1',
+    'starpower2',
+    'https://static.wikia.nocookie.net/spongebob/images/1/17/Patrick_Star_Show_Patrick.png',
+    '2003-14-12',
+    1
+  );
 INSERT INTO Users (
-'first_name', 
-'last_name', 
-'email', 
-'bio', 
-'username',
-'password', 
-'profile_image_url', 
-'created_on', 
-'active'
-) 
+    'first_name',
+    'last_name',
+    'email',
+    'bio',
+    'username',
+    'password',
+    'profile_image_url',
+    'created_on',
+    'active'
+  )
 VALUES (
-'Gary',
-'Squarepants',
-'snail1@bikinibottom.oc',
-'Meow',
-'garythesnail',
-'meow1',
-'https://upload.wikimedia.org/wikipedia/commons/4/4a/Gary_%28SpongeBob%29_character.png',
-'2003-14-12',
-1
-);
+    'Gary',
+    'Squarepants',
+    'snail1@bikinibottom.oc',
+    'Meow',
+    'garythesnail',
+    'meow1',
+    'https://upload.wikimedia.org/wikipedia/commons/4/4a/Gary_%28SpongeBob%29_character.png',
+    '2003-14-12',
+    1
+  );
 INSERT INTO Users (
-'first_name', 
-'last_name', 
-'email', 
-'bio', 
-'username',
-'password', 
-'profile_image_url', 
-'created_on', 
-'active'
-) 
+    'first_name',
+    'last_name',
+    'email',
+    'bio',
+    'username',
+    'password',
+    'profile_image_url',
+    'created_on',
+    'active'
+  )
 VALUES (
-'Squilliam',
-'Fancyson',
-'squilliam@bikinibottom.oc',
-'World-renowned artist, musician, and entrepreneur. I''ve achieved everything Squidward ever dreamed of, and I did it effortlessly. My unibrow alone has been featured in three galleries.',
-'fancyson_elite',
-'betterthansquid1',
-'https://i1.sndcdn.com/avatars-000451991661-3mzpc2-t1080x1080.jpg',
-'2003-14-12',
-1
-);
-
+    'Squilliam',
+    'Fancyson',
+    'squilliam@bikinibottom.oc',
+    'World-renowned artist, musician, and entrepreneur. I''ve achieved everything Squidward ever dreamed of, and I did it effortlessly. My unibrow alone has been featured in three galleries.',
+    'fancyson_elite',
+    'betterthansquid1',
+    'https://i1.sndcdn.com/avatars-000451991661-3mzpc2-t1080x1080.jpg',
+    '2003-14-12',
+    1
+  );
 INSERT INTO Posts (
-  'user_id', 
-  'category_id', 
-  'title', 
-  'publication_date', 
-  'image_url', 
-  'content', 
-  'approved'
-)
+    'user_id',
+    'category_id',
+    'title',
+    'publication_date',
+    'image_url',
+    'content',
+    'approved'
+  )
 VALUES (
-  1, 
-  4, 
-  'The Best Krabby Patty Secret Formula Theories',
-  '2025-11-14 09:00:00',
-  'https://static.wikia.nocookie.net/spongebob/images/4/48/Plankton%27s_Army_177.png',
-  'Bikini Bottom''s most debated mystery isn''t the Bermuda Triangle — it''s the Krusty Krab''s secret formula. "I''ve dedicated years to uncovering the truth," says Sandy Cheeks, PhD. "My leading hypothesis involves a rare kelp extract native to the sea floor." Plankton, rival restaurateur and owner of the Chum Bucket, was unavailable for comment. Mr. Krabs, when pressed for details, simply replied "I smell money" and walked away.',
-  1
-);
+    1,
+    4,
+    'The Best Krabby Patty Secret Formula Theories',
+    '2025-11-14 09:00:00',
+    'https://static.wikia.nocookie.net/spongebob/images/4/48/Plankton%27s_Army_177.png',
+    'Bikini Bottom''s most debated mystery isn''t the Bermuda Triangle — it''s the Krusty Krab''s secret formula. "I''ve dedicated years to uncovering the truth," says Sandy Cheeks, PhD. "My leading hypothesis involves a rare kelp extract native to the sea floor." Plankton, rival restaurateur and owner of the Chum Bucket, was unavailable for comment. Mr. Krabs, when pressed for details, simply replied "I smell money" and walked away.',
+    1
+  );
 INSERT INTO Posts (
-  'user_id', 
-  'category_id', 
-  'title', 
-  'publication_date', 
-  'image_url', 
-  'content', 
-  'approved'
-)
+    'user_id',
+    'category_id',
+    'title',
+    'publication_date',
+    'image_url',
+    'content',
+    'approved'
+  )
 VALUES (
-  2, 
-  2, 
-  'Is Living Under a Rock the New Minimalism?',
-  '2025-12-01 10:15:00',
-  'https://static.wikia.nocookie.net/spongebob/images/f/f0/Patrick%27s_house.png',
-  'Patrick Star has been living under a rock for years — and interior design experts are taking notice. "There''s something deeply intentional about it," says renowned designer Pearl Krabs. "No clutter, no distractions, just pure simplicity." Patrick himself describes his design philosophy as "I didn''t know I had a philosophy." The rock currently has no windows, no furniture, and no electricity, which Patrick calls "cozy."',
-  1
-);
+    2,
+    2,
+    'Is Living Under a Rock the New Minimalism?',
+    '2025-12-01 10:15:00',
+    'https://static.wikia.nocookie.net/spongebob/images/f/f0/Patrick%27s_house.png',
+    'Patrick Star has been living under a rock for years — and interior design experts are taking notice. "There''s something deeply intentional about it," says renowned designer Pearl Krabs. "No clutter, no distractions, just pure simplicity." Patrick himself describes his design philosophy as "I didn''t know I had a philosophy." The rock currently has no windows, no furniture, and no electricity, which Patrick calls "cozy."',
+    1
+  );
 INSERT INTO Posts (
-'user_id', 
-'category_id', 
-'title', 
-'publication_date', 
-'image_url', 
-'content', 
-'approved'
-)
+    'user_id',
+    'category_id',
+    'title',
+    'publication_date',
+    'image_url',
+    'content',
+    'approved'
+  )
 VALUES (
-3,
-3,
-'Boating School: Why Are Pass Rates So Low?',
-'2026-01-22 11:30:00',
-'https://static.wikia.nocookie.net/spongebob/images/7/76/MrsPuffBoatingSchoolStock.png',
-'Mrs. Puff''s Boating School has reported a 2% pass rate for the third consecutive year, a statistic that instructor Mrs. Puff attributes to "one particular student." SpongeBob SquarePants, who has attempted the boating exam 1,258 times, remains optimistic. "This is definitely my year," he told reporters. "I''ve been practicing on a simulator made of cardboard and dreams." Mrs. Puff was later seen hyperventilating into a paper bag.',
-0
-);
+    3,
+    3,
+    'Boating School: Why Are Pass Rates So Low?',
+    '2026-01-22 11:30:00',
+    'https://static.wikia.nocookie.net/spongebob/images/7/76/MrsPuffBoatingSchoolStock.png',
+    'Mrs. Puff''s Boating School has reported a 2% pass rate for the third consecutive year, a statistic that instructor Mrs. Puff attributes to "one particular student." SpongeBob SquarePants, who has attempted the boating exam 1,258 times, remains optimistic. "This is definitely my year," he told reporters. "I''ve been practicing on a simulator made of cardboard and dreams." Mrs. Puff was later seen hyperventilating into a paper bag.',
+    0
+  );
 INSERT INTO Posts (
-  'user_id', 
-  'category_id', 
-  'title', 
-  'publication_date', 
-  'image_url', 
-  'content', 
-  'approved'
-)
+    'user_id',
+    'category_id',
+    'title',
+    'publication_date',
+    'image_url',
+    'content',
+    'approved'
+  )
 VALUES (
-  1, 
-  2, 
-  'Jellyfishing: Bikini Bottom''s Hottest New Hobby',
-  '2026-02-10 08:45:00',
-  'https://static.wikia.nocookie.net/spongebob/images/a/ab/Jellyfish_Hunter_004.png',
-  'Move over pickleball — jellyfishing is taking Bikini Bottom by storm. Armed with nothing but a net and unbridled enthusiasm, locals are heading to Jellyfish Fields in record numbers. "It''s meditative," says SpongeBob SquarePants, widely regarded as the sport''s foremost expert. "You and the jellyfish, one with nature." Patrick Star, his frequent jellyfishing companion, adds: "I like the part where you catch them." Safety officials remind participants that jellyfish stings remain extremely painful.',
-  1
-);
+    1,
+    2,
+    'Jellyfishing: Bikini Bottom''s Hottest New Hobby',
+    '2026-02-10 08:45:00',
+    'https://static.wikia.nocookie.net/spongebob/images/a/ab/Jellyfish_Hunter_004.png',
+    'Move over pickleball — jellyfishing is taking Bikini Bottom by storm. Armed with nothing but a net and unbridled enthusiasm, locals are heading to Jellyfish Fields in record numbers. "It''s meditative," says SpongeBob SquarePants, widely regarded as the sport''s foremost expert. "You and the jellyfish, one with nature." Patrick Star, his frequent jellyfishing companion, adds: "I like the part where you catch them." Safety officials remind participants that jellyfish stings remain extremely painful.',
+    1
+  );
 INSERT INTO Posts (
-  'user_id', 
-  'category_id', 
-  'title', 
-  'publication_date', 
-  'image_url', 
-  'content', 
-  'approved'
-)
+    'user_id',
+    'category_id',
+    'title',
+    'publication_date',
+    'image_url',
+    'content',
+    'approved'
+  )
 VALUES (
-  4, 
-  1, 
-  'Sandy Cheeks'' Guide to Staying Fit Under the Sea',
-  '2026-02-28 07:30:00',
-  'https://www.randomgoofiness.com/wp-content/uploads/2012/02/sandy-doing-deadlifts.png',
-  'Texas native and Bikini Bottom''s premier scientist-athlete Sandy Cheeks has built a reputation as the most physically fit resident of the sea floor. "Back in Texas we had a saying: if you ain''t sweatin'', you ain''t livin''," says Cheeks, who holds black belts in three martial arts and once wrestled a giant clam before breakfast. Her treedome gym, which she built herself, features a treadmill, a karate dojo, and what she describes as "the world''s only underwater lasso range." SpongeBob and Patrick have attempted her workout regimen twice, both times ending up in the hospital.',
-  1
-);
-
-
-INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 1, 3, 'GIMME','The things I would do to get my hands on that recipe!!!', '2026-01-01');
-INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 1, 4, 'Who cares?', 'I know but I don''t care','2025-12-03');
-INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 2, 4, 'Who lives like this?', 'What''s wrong with you boy?', '2025-12-05');
-INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 2, 1, 'Love it!', 'This is my favorite hangout spot!', '2025-12-02');
-INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 3, 1, 'One day!', 'Never give up friends!', '2026-01-30');
-INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 3, 4, 'Please stop', 'Mr. Squarepants is a danger to bikini bottom!', '2026-01-29');
-INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 3, 2, 'I believe in you!', 'Can''t wait for the road trips one day Spongebob, you can do it!', '2026-01-31');
-INSERT INTO Comments ('post_id', 'author_id', 'subject', 'content', 'created_on') VALUES ( 5, 1, 'Work it', 'I''m getting snatched for the summer', '2026-03-01');
+    4,
+    1,
+    'Sandy Cheeks'' Guide to Staying Fit Under the Sea',
+    '2026-02-28 07:30:00',
+    'https://www.randomgoofiness.com/wp-content/uploads/2012/02/sandy-doing-deadlifts.png',
+    'Texas native and Bikini Bottom''s premier scientist-athlete Sandy Cheeks has built a reputation as the most physically fit resident of the sea floor. "Back in Texas we had a saying: if you ain''t sweatin'', you ain''t livin''," says Cheeks, who holds black belts in three martial arts and once wrestled a giant clam before breakfast. Her treedome gym, which she built herself, features a treadmill, a karate dojo, and what she describes as "the world''s only underwater lasso range." SpongeBob and Patrick have attempted her workout regimen twice, both times ending up in the hospital.',
+    1
+  );
+INSERT INTO Comments (
+    'post_id',
+    'author_id',
+    'subject',
+    'content',
+    'created_on'
+  )
+VALUES (
+    1,
+    3,
+    'GIMME',
+    'The things I would do to get my hands on that recipe!!!',
+    '2026-01-01'
+  );
+INSERT INTO Comments (
+    'post_id',
+    'author_id',
+    'subject',
+    'content',
+    'created_on'
+  )
+VALUES (
+    1,
+    4,
+    'Who cares?',
+    'I know but I don''t care',
+    '2025-12-03'
+  );
+INSERT INTO Comments (
+    'post_id',
+    'author_id',
+    'subject',
+    'content',
+    'created_on'
+  )
+VALUES (
+    2,
+    4,
+    'Who lives like this?',
+    'What''s wrong with you boy?',
+    '2025-12-05'
+  );
+INSERT INTO Comments (
+    'post_id',
+    'author_id',
+    'subject',
+    'content',
+    'created_on'
+  )
+VALUES (
+    2,
+    1,
+    'Love it!',
+    'This is my favorite hangout spot!',
+    '2025-12-02'
+  );
+INSERT INTO Comments (
+    'post_id',
+    'author_id',
+    'subject',
+    'content',
+    'created_on'
+  )
+VALUES (
+    3,
+    1,
+    'One day!',
+    'Never give up friends!',
+    '2026-01-30'
+  );
+INSERT INTO Comments (
+    'post_id',
+    'author_id',
+    'subject',
+    'content',
+    'created_on'
+  )
+VALUES (
+    3,
+    4,
+    'Please stop',
+    'Mr. Squarepants is a danger to bikini bottom!',
+    '2026-01-29'
+  );
+INSERT INTO Comments (
+    'post_id',
+    'author_id',
+    'subject',
+    'content',
+    'created_on'
+  )
+VALUES (
+    3,
+    2,
+    'I believe in you!',
+    'Can''t wait for the road trips one day Spongebob, you can do it!',
+    '2026-01-31'
+  );
+INSERT INTO Comments (
+    'post_id',
+    'author_id',
+    'subject',
+    'content',
+    'created_on'
+  )
+VALUES (
+    5,
+    1,
+    'Work it',
+    'I''m getting snatched for the summer',
+    '2026-03-01'
+  );
+INSERT INTO PostTags
+VALUES (null, 1, 1);
+INSERT INTO PostTags
+VALUES (null, 1, 2);
+INSERT INTO PostTags
+VALUES (null, 2, 1);
+INSERT INTO PostTags
+VALUES (null, 2, 3);
+INSERT INTO PostTags
+VALUES (null, 3, 4);
+INSERT INTO PostTags
+VALUES (null, 4, 4);
+INSERT INTO PostTags
+VALUES (null, 4, 2);
+INSERT INTO PostTags
+VALUES (null, 4, 1);
