@@ -24,7 +24,13 @@ from views import (
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
-from views import retrieve_comments, create_comment
+from views import (
+    retrieve_comments,
+    create_comment,
+    update_comment,
+    delete_comment,
+    get_comment,
+)
 
 
 class JSONServer(HandleRequests):
@@ -76,6 +82,11 @@ class JSONServer(HandleRequests):
                 response_body = retrieve_comments(url["pk"])
                 return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
+        elif url["requested_resource"] == "comments":
+            if url["pk"] != 0:
+                response_body = get_comment(url["pk"])
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
+
         else:
             return self.response(
                 "", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value
@@ -115,6 +126,13 @@ class JSONServer(HandleRequests):
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
                     )
+        elif url["requested_resource"] == "comments":
+            if pk != 0:
+                successfully_updated = update_comment(pk, request_body)
+                if successfully_updated:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
 
         return self.response(
             "Requested resource not found",
@@ -149,9 +167,16 @@ class JSONServer(HandleRequests):
                     "Requested resource not found",
                     status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value,
                 )
-            else:
+        elif url["requested_resource"] == "comments":
+            if pk != 0:
+                successfully_deleted = delete_comment(pk)
+                if successfully_deleted:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
                 return self.response(
-                    "Not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value
+                    "Requested resource not found",
+                    status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value,
                 )
 
         elif url["requested_resource"] == "posts":
