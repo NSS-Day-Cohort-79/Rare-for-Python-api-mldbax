@@ -26,7 +26,7 @@ from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
 from views import retrieve_comments, create_comment
 
-from views import add_post_tag
+from views import add_post_tag, delete_post_tag
 
 
 class JSONServer(HandleRequests):
@@ -155,10 +155,20 @@ class JSONServer(HandleRequests):
                 return self.response(
                     "Not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value
                 )
-
         elif url["requested_resource"] == "posts":
             if pk != 0:
                 successfully_deleted = delete_post(pk)
+                if successfully_deleted:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
+                return self.response(
+                    "Requested resource not found",
+                    status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value,
+                )
+        elif url["requested_resource"] == "post-tags":
+            if pk != 0:
+                successfully_deleted = delete_post_tag(pk)
                 if successfully_deleted:
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value

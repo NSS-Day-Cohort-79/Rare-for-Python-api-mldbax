@@ -69,3 +69,27 @@ def add_post_tag(new_post_tag):
         id = db_cursor.lastrowid
 
         return json.dumps({"id": id})
+
+
+def delete_post_tag(pk):
+    """Delete an existing entry for the given postId and tagId
+
+    Args:
+        pk (int): Primary key of row to delete
+
+    Returns:
+        boolean: True if rows deleted
+    """
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        # Write the SQL query to get the information you want
+        db_cursor.execute(
+            """
+        DELETE FROM PostTags WHERE id = ?
+        """,
+            (pk,),
+        )
+
+    return True if db_cursor.rowcount > 0 else False
