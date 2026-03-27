@@ -23,4 +23,10 @@ from .comments import (
     delete_comment,
     get_comment,
 )
-from .post_tags import get_post_tags_by_post_id, add_post_tag, delete_post_tag
+from .post_tags import (
+    get_post_tags_by_post_id,
+    add_post_tag,
+    delete_post_tag,
+    delete_post_tag_by_tag_id,
+    delete_post_tag_by_post_id,
+)

@@ -32,7 +32,12 @@ from views import (
     get_comment,
 )
 
-from views import add_post_tag, delete_post_tag
+from views import (
+    add_post_tag,
+    delete_post_tag,
+    delete_post_tag_by_tag_id,
+    delete_post_tag_by_post_id,
+)
 
 
 class JSONServer(HandleRequests):
@@ -162,6 +167,7 @@ class JSONServer(HandleRequests):
             if pk != 0:
                 successfully_deleted = delete_tag(pk)
                 if successfully_deleted:
+                    delete_post_tag_by_tag_id(pk)
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
                     )
@@ -184,6 +190,7 @@ class JSONServer(HandleRequests):
             if pk != 0:
                 successfully_deleted = delete_post(pk)
                 if successfully_deleted:
+                    delete_post_tag_by_post_id(pk)
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
                     )

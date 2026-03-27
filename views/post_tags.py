@@ -93,3 +93,51 @@ def delete_post_tag(pk):
         )
 
     return True if db_cursor.rowcount > 0 else False
+
+
+def delete_post_tag_by_tag_id(tag_id):
+    """Delete all existing entries for the given tagId
+
+    Args:
+        tag_id (int): The tag_id to find and delete
+
+    Returns:
+        boolean: True if rows deleted
+    """
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        # Write the SQL query to get the information you want
+        db_cursor.execute(
+            """
+            DELETE FROM PostTags WHERE tag_id = ?
+            """,
+            (tag_id,),
+        )
+
+    return True if db_cursor.rowcount > 0 else False
+
+
+def delete_post_tag_by_post_id(post_id):
+    """Delete all existing entries for the given post_id
+
+    Args:
+        post_id (int): The post_id to find and delete
+
+    Returns:
+        boolean: True if rows deleted
+    """
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        # Write the SQL query to get the information you want
+        db_cursor.execute(
+            """
+            DELETE FROM PostTags WHERE post_id = ?
+            """,
+            (post_id,),
+        )
+
+    return True if db_cursor.rowcount > 0 else False
