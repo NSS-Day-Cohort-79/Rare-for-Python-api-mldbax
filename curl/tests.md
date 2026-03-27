@@ -1,0 +1,187 @@
+## Categories tests
+
+### Get
+
+```bash
+curl 'http://localhost:8088/categories' | jq
+
+curl 'http://localhost:8088/categories/1' | jq
+```
+
+### POST
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"label":"test"}' \
+  'http://localhost:8088/categories'
+```
+
+### PUT
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"id":1,"label":"Sports"}' \
+  'http://localhost:8088/categories/1'
+```
+
+### DELETE
+
+```bash
+curl -v --header "Content-Type: application/json" \
+  --request DELETE \
+  'http://localhost:8088/categories/1' | jq
+```
+
+## Tag tests
+
+### Get
+
+```bash
+curl 'http://localhost:8088/tags' | jq
+
+curl 'http://localhost:8088/tags/1' | jq
+```
+
+### POST
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"label":"test"}' \
+  'http://localhost:8088/tags'
+```
+
+### PUT
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"label":"Sports"}' \
+  'http://localhost:8088/tags/5'
+```
+
+### DELETE
+
+```bash
+curl -v --header "Content-Type: application/json" \
+  --request DELETE \
+  'http://localhost:8088/tags/5' | jq
+```
+
+## Users test
+
+### Register
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"first_name":"Patrick", "last_name":"Starr", "username":"This_Is_Patrick1", "email":"NO!ThisIsPatrick*84@bikinibottom.oc", "password":"wombo", "bio":"WHO ARE YOU PEOPLE!"}' \
+  'http://localhost:8088/register'
+```
+
+### Login
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username":"ready2fry", "password":"krabbypatty1"}' \
+  'http://localhost:8088/login'
+```
+
+## Posts tests
+
+### Get
+
+```bash
+curl 'http://localhost:8088/posts' | jq
+
+curl 'http://localhost:8088/posts/1' | jq
+
+curl 'http://localhost:8088/approved-posts' | jq
+
+```
+
+### POST
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"userId":1,"categoryId":1,"title":"test title","imageUrl":"test.url","content":"test post please ignore"}' \
+  'http://localhost:8088/posts'
+```
+
+### PUT
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"id": 2, "userId": 2, "categoryId": 2, "title": "New Title", "publicationDate": "2025-12-01 10:15:00", "imageUrl": "https://static.wikia.nocookie.net/spongebob/images/f/f0/Patrick%27s_house.png", "content": "updated content", "approved": 1}' \
+  'http://localhost:8088/posts/1'
+```
+
+### DELETE
+
+```bash
+curl -v --header "Content-Type: application/json" \
+  --request DELETE \
+  'http://localhost:8088/posts/6' | jq
+```
+
+## Comments
+
+### GET
+
+```bash
+curl 'http://localhost:8088/post-comments/1' | jq
+
+curl 'http://localhost:8088/post-comments/4' | jq
+
+curl 'http://localhost:8088/comments/4' | jq
+```
+
+### POST
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"postId":1,"authorId":1,"subject":"test subject","content":"test content"}' \
+  'http://localhost:8088/comments'
+```
+
+### PUT
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"id":1,"postId":1,"authorId":3,"subject":"test subject - was GIMME","content":"test content - was i need to get my hands"}' \
+  'http://localhost:8088/comments/1'
+```
+
+### DELETE
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request DELETE \
+  'http://localhost:8088/comments/1' | jq
+```
+
+## PostTags tests
+
+### POST
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"postId":9,"tagId":1}' \
+  'http://localhost:8088/post-tags'
+```
+
+### DELETE
+
+```bash
+curl -v --header "Content-Type: application/json" \
+  --request DELETE \
+  'http://localhost:8088/post-tags/1' | jq
+```
