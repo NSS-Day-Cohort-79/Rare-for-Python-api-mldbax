@@ -61,6 +61,36 @@ def retrieve_comments(post_id):
     return serialized_comments
 
 
+def get_comment(comment_pk):
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+        db_cursor.execute(
+            """
+            SELECT 
+                id,
+                post_id,
+                subject, 
+                content, 
+                author_id
+            FROM Comments
+            WHERE id = ?
+            """,
+            (comment_pk,),
+        )
+        row = db_cursor.fetchone()
+
+        comment = {
+            "id": row["id"],
+            "authorId": row["author_id"],
+            "postId": row["post_id"],
+            "subject": row["subject"],
+            "content": row["content"],
+        }
+        serialized_comment = json.dumps(comment)
+    return serialized_comment
+
+
 def create_comment(comment_data):
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
@@ -87,3 +117,35 @@ def create_comment(comment_data):
         )
         new_comment_id = db_cursor.lastrowid
         return json.dumps(new_comment_id)
+
+
+def update_comment(comment_id, comment_data):
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+        db_cursor.execute(
+            """
+            UPDATE Comments
+            SET 
+            subject = ?,
+            content = ?
+            WHERE id = ?
+            """,
+            (comment_data["subject"], comment_data["content"], comment_id),
+        )
+        rows_affected = db_cursor.rowcount
+    return True if rows_affected > 0 else False
+
+
+def delete_comment(comment_id):
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+        db_cursor.execute(
+            """
+            DELETE FROM Comments WHERE id = ?
+            """,
+            (comment_id,),
+        )
+
+    return True if db_cursor.rowcount > 0 else False

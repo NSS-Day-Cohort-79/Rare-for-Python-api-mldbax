@@ -137,6 +137,8 @@ curl -v --header "Content-Type: application/json" \
 curl 'http://localhost:8088/post-comments/1' | jq
 
 curl 'http://localhost:8088/post-comments/4' | jq
+
+curl 'http://localhost:8088/comments/4' | jq
 ```
 
 ### POST
@@ -146,6 +148,23 @@ curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"postId":1,"authorId":1,"subject":"test subject","content":"test content"}' \
   'http://localhost:8088/comments'
+```
+
+### PUT
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"id":1,"postId":1,"authorId":3,"subject":"test subject - was GIMME","content":"test content - was i need to get my hands"}' \
+  'http://localhost:8088/comments/1'
+```
+
+### DELETE
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request DELETE \
+  'http://localhost:8088/comments/1' | jq
 ```
 
 ## PostTags tests
