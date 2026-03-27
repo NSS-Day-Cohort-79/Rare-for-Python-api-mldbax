@@ -122,6 +122,7 @@ curl --header "Content-Type: application/json" \
 ```
 
 ### DELETE
+
 ```bash
 curl -v --header "Content-Type: application/json" \
   --request DELETE \
@@ -164,4 +165,23 @@ curl --header "Content-Type: application/json" \
 curl --header "Content-Type: application/json" \
   --request DELETE \
   'http://localhost:8088/comments/1' | jq
+```
+
+## PostTags tests
+
+### POST
+
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"postId":9,"tagId":1}' \
+  'http://localhost:8088/post-tags'
+```
+
+### DELETE
+
+```bash
+curl -v --header "Content-Type: application/json" \
+  --request DELETE \
+  'http://localhost:8088/post-tags/1' | jq
 ```

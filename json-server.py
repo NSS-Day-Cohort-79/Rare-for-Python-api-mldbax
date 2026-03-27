@@ -32,6 +32,8 @@ from views import (
     get_comment,
 )
 
+from views import add_post_tag, delete_post_tag
+
 
 class JSONServer(HandleRequests):
     """Server class to handle incoming HTTP requests for shipping ships"""
@@ -178,10 +180,20 @@ class JSONServer(HandleRequests):
                     "Requested resource not found",
                     status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value,
                 )
-
         elif url["requested_resource"] == "posts":
             if pk != 0:
                 successfully_deleted = delete_post(pk)
+                if successfully_deleted:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
+                return self.response(
+                    "Requested resource not found",
+                    status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value,
+                )
+        elif url["requested_resource"] == "post-tags":
+            if pk != 0:
+                successfully_deleted = delete_post_tag(pk)
                 if successfully_deleted:
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
@@ -231,6 +243,11 @@ class JSONServer(HandleRequests):
 
         elif url["requested_resource"] == "posts":
             new_id = create_post(request_body)
+            if new_id:
+                return self.response(new_id, status.HTTP_201_SUCCESS_CREATED.value)
+
+        elif url["requested_resource"] == "post-tags":
+            new_id = add_post_tag(request_body)
             if new_id:
                 return self.response(new_id, status.HTTP_201_SUCCESS_CREATED.value)
 
