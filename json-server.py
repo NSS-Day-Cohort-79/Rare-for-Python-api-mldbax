@@ -12,7 +12,15 @@ from views import (
     update_category,
     delete_category,
 )
-from views import get_posts, retrieve_post, get_approved_posts, create_post, update_post
+from views import (
+    get_posts,
+    get_user_posts,
+    retrieve_post,
+    get_approved_posts,
+    create_post,
+    update_post,
+    delete_post,
+)
 
 from views import get_tags, retrieve_tag, create_tag, update_tag, delete_tag
 
@@ -59,6 +67,11 @@ class JSONServer(HandleRequests):
 
             response_body = get_approved_posts()
             return self.response(response_body, status.HTTP_200_SUCCESS.value)
+
+        elif url["requested_resource"] == "user-posts":
+            if url["pk"] != 0:
+                response_body = get_user_posts(url["pk"])
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         elif url["requested_resource"] == "post-comments":
             if url["pk"] != 0:
@@ -130,6 +143,22 @@ class JSONServer(HandleRequests):
         elif url["requested_resource"] == "tags":
             if pk != 0:
                 successfully_deleted = delete_tag(pk)
+                if successfully_deleted:
+                    return self.response(
+                        "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
+                    )
+                return self.response(
+                    "Requested resource not found",
+                    status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value,
+                )
+            else:
+                return self.response(
+                    "Not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value
+                )
+
+        elif url["requested_resource"] == "posts":
+            if pk != 0:
+                successfully_deleted = delete_post(pk)
                 if successfully_deleted:
                     return self.response(
                         "", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value
